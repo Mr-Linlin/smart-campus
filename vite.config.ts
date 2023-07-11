@@ -26,6 +26,7 @@ export default defineConfig({
         math: 'parens-division',
       },
     },
+
   },
   server: {
     open: true,
