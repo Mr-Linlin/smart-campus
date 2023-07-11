@@ -12,7 +12,7 @@
             石湖农贸市场可视化平台
           </h1>
         </header>
-        <div class="w-full h-full relative flex flex-box">
+        <div class="w-full h-full relative flex justify-between">
           <div class="left pl-7 pb-7 pt-10">
             <div class="box-item">
               <Polygonal />
@@ -102,11 +102,6 @@ const energyList = [
 .layout {
   .content {
     width: 100%;
-    .flex-box {
-      justify-content: space-between;
-      .main {
-      }
-    }
   }
 }
 </style>

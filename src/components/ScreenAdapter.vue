@@ -75,6 +75,6 @@ export default {
   top: 50%;
   transform: translateY(-50%);
   transition: 0.3s;
-  background: #778899;
+  background: rgba(#778899, 0.8);
 }
 </style>
