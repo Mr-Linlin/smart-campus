@@ -2,7 +2,7 @@
   <div
     id="myCake"
     ref="myCake"
-    :style="{ width: '700px', height: '280px' }"
+    :style="{ width: '600px', height: '280px' }"
   ></div>
 </template>
 <script lang="ts">

@@ -1,5 +1,9 @@
 <template>
-  <div id="myBroken" :style="{ width: '700px', height: '280px' }"></div>
+  <div
+    id="myBroken"
+    ref="myBroken"
+    :style="{ width: '580px', height: '190px' }"
+  ></div>
 </template>
 <script lang="ts">
 import {
@@ -8,6 +12,7 @@ import {
   onUnmounted,
   onMounted,
   getCurrentInstance,
+  ref,
 } from "vue";
 
 export default defineComponent({
@@ -16,12 +21,13 @@ export default defineComponent({
     onMounted(() => {
       initChart();
     });
+    const myBroken = ref(null);
     const { proxy } = getCurrentInstance() as any;
     // 基础配置一下Echarts
     function initChart() {
       const option = {
-        backgroundColor: "#03213D",
-        color: ["#5090FF", "#01B3E4"],
+        backgroundColor: "transparent",
+        color: ["#28f8b1", "#0084fc"],
         tooltip: {
           trigger: "axis",
           backgroundColor: "rgba(0,0,0,.6)",
@@ -48,7 +54,7 @@ export default defineComponent({
           formatter: ["{a|{name}}"].join("\n"),
           textStyle: {
             fontSize: 12,
-            color: "#6A93B9",
+            color: "#FFF",
             height: 8,
             rich: {
               a: {
@@ -56,7 +62,7 @@ export default defineComponent({
               },
             },
           },
-          data: ["魅力值", "能力值"],
+          data: ["用水", "用电"],
         },
         xAxis: {
           type: "category",
@@ -74,15 +80,7 @@ export default defineComponent({
           axisTick: {
             show: false,
           },
-          data: [
-            "橘梨纱",
-            "美竹铃",
-            "天海翼",
-            "泷泽萝拉",
-            "樱井莉亚",
-            "铃原爱蜜莉",
-            "铃原爱蜜莉2",
-          ],
+          data: ["01/01", "01/02", "01/03", "01/04", "01/05", "01/06"],
         },
         yAxis: {
           type: "value",
@@ -118,8 +116,8 @@ export default defineComponent({
             // symbol: "none",
             // showSymbol: false,
             smooth: true, // 是否曲线
-            name: "魅力值", // 图例对应类别
-            data: [4000, 6000, 7000, 2000, 5000, 7000, 9000], // 纵坐标数据
+            name: "", // 图例对应类别
+            data: [0, 100, 100, 300, 400], // 纵坐标数据
             areaStyle: {
               // 区域颜色
               // color: new graphic.LinearGradient(0, 0, 0, 1, [
@@ -141,7 +139,7 @@ export default defineComponent({
                 colorStops: [
                   {
                     offset: 0.1,
-                    color: "#5090FF", // 0% 处的颜色
+                    color: "#28f8b1", // 0% 处的颜色
                   },
                   {
                     offset: 1,
@@ -154,8 +152,8 @@ export default defineComponent({
           {
             type: "line",
             smooth: true,
-            name: "能力值",
-            data: [1000, 4000, 5000, 6000, 3000, 8000, 7000],
+            name: "",
+            data: [100, 400, 200, 0, 300],
             areaStyle: {
               // color: new graphic.LinearGradient(0, 0, 0, 1, [
               // 	{
@@ -176,7 +174,7 @@ export default defineComponent({
                 colorStops: [
                   {
                     offset: 0.1,
-                    color: "#01B3E4", // 0% 处的颜色
+                    color: "#0084fc", // 0% 处的颜色
                   },
                   {
                     offset: 1,
@@ -188,10 +186,7 @@ export default defineComponent({
           },
         ],
       };
-      let chart = proxy.$echarts.init(
-        document.getElementById("myBroken"),
-        "dark"
-      );
+      let chart = proxy.$echarts.init(myBroken.value, "dark");
       //3.重新渲染 echarts图表
       chart.setOption(option);
       // 把配置和数据放这里
@@ -201,7 +196,7 @@ export default defineComponent({
       };
     }
 
-    return { initChart };
+    return { initChart, myBroken };
   },
 });
 </script>
